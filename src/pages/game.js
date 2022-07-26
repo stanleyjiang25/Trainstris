@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaRegWindowClose } from 'react-icons/fa';
 import './game.css';
 
 function Square(props) {
@@ -79,7 +78,7 @@ class LevelSelect extends React.Component {
           onClick={() => this.props.onClick(i)} />
       )
     }
-    else if (i != 0) {
+    else if (i !== 0) {
       return (
         <Level key={i} value={i} active={act} width={"40px"}
           onClick={() => this.props.onClick(i)} />
@@ -235,7 +234,7 @@ class Game extends React.Component {
     for (var i = 0; i < 10; i++) {
       let count = 0;
       for (var j = 0; j < 20; j++) {
-        if (tetrisState[j][i] != false) {
+        if (tetrisState[j][i] !== false) {
           count++;
         }
       }
@@ -282,7 +281,7 @@ class Game extends React.Component {
     let count = 0;
     for (var i = 0; i < 21; i++) {
       for (var j = 0; j < 10; j++) {
-        if (bfsArray[i][j] != false) {
+        if (bfsArray[i][j] !== false) {
           if (this.searchHelper(i, j, bfsArray, true)) {
             count++;
           }
@@ -317,7 +316,7 @@ class Game extends React.Component {
     let tempArray = tetrisState;
     for (var i = 0; i < 20; i++) {
       for (var j = 0; j < 10; j++) {
-        if (tempArray[i][j] != false) {
+        if (tempArray[i][j] !== false) {
           tempArray[i][j] = false;
         }
         else {
@@ -325,10 +324,10 @@ class Game extends React.Component {
         }
       }
     }
-    for (var i = 0; i < 20; i++) {
-      for (var j = 0; j < 10; j++) {
-        if (tempArray[i][j] != false) {
-          if (this.searchHelper(i, j, tempArray, false)) {
+    for (var k = 0; k < 20; k++) {
+      for (var l = 0; l < 10; l++) {
+        if (tempArray[k][l] !== false) {
+          if (this.searchHelper(k, l, tempArray, false)) {
             holes++;
           }
         }
@@ -384,6 +383,7 @@ class Game extends React.Component {
         break;
       case 15:
         pieces = 41;
+        break;
       default:
         pieces = this.state.piece;
     }
@@ -411,8 +411,8 @@ class Game extends React.Component {
     for (var i = 0; i < array.length; i++)
       tempArray1[i] = array[i].slice();
     let tempArray2 = [];
-    for (var i = 0; i < array.length; i++)
-      tempArray2[i] = array[i].slice();
+    for (var j = 0; j < array.length; j++)
+      tempArray2[j] = array[j].slice();
     let valid = this.isValid(tempArray1) && this.fullRow(array);
     let hole = this.holes(tempArray2);
     let pieces = this.pieces(this.state.level);
@@ -784,8 +784,8 @@ class Game extends React.Component {
     }
   }
   renderLevelSol() {
-    if (this.state.level != 0) {
-      if (this.state.level != 16) {
+    if (this.state.level !== 0) {
+      if (this.state.level !== 16) {
         return (
           <div className="level-sol">
             <button className="game-button" onClick={() => { this.reveal() }}> Reveal </button>
@@ -817,7 +817,7 @@ class Game extends React.Component {
 
   }
   renderGame() {
-    if (this.state.level != 0) {
+    if (this.state.level !== 0) {
       return (
         <div className="game">
           <div className="game-board">
